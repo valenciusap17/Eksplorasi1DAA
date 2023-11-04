@@ -6,14 +6,17 @@ public class RandomQuicksort {
     public static void main(String[] args) {
         // int[] arr = { 46, 24, 25, 71, 72, 84, 60, 87 };
         Scanner in = new Scanner(System.in);
-        int[] arr = new int[200];
-        for (int i = 0; i < 200; i++) {
+        int[] arr = new int[20000];
+        for (int i = 0; i < 20000; i++) {
             arr[i] = in.nextInt();
         }
+        // long start = System.currentTimeMillis();
         quicksort(arr, 0, arr.length - 1);
-        System.out.println("hasil: ");
+        // long end = System.currentTimeMillis();
+        // System.out.println("Elapsed time in mili second: " + (end - start));
+        // System.out.println("hasil: ");
         for (int i = 0; i < arr.length; i++) {
-            System.out.print(arr[i] + " ");
+            System.out.println(arr[i]);
         }
     }
 
