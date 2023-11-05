@@ -4,20 +4,35 @@ import java.util.Scanner;
 public class RandomQuicksort {
 
     public static void main(String[] args) {
-        // int[] arr = { 46, 24, 25, 71, 72, 84, 60, 87 };
         Scanner in = new Scanner(System.in);
+
+        // Ukuran dari array input dapat disesuaikan secara manual
         int[] arr = new int[20000];
         for (int i = 0; i < 20000; i++) {
             arr[i] = in.nextInt();
         }
+
+        // Variabel yang menyimpan nilai runtime saat proses baru dimulai
         // long start = System.currentTimeMillis();
+
         quicksort(arr, 0, arr.length - 1);
+
+        // Variabel yang menyimpan nilai runtime saat proses sudah selesai
         // long end = System.currentTimeMillis();
+
+        // Print total runtime
         // System.out.println("Elapsed time in mili second: " + (end - start));
-        // System.out.println("hasil: ");
+
+        // Print memory usage
+        // printMemoryUsage();
+
+        // Print output
+        System.out.println("hasil: ");
         for (int i = 0; i < arr.length; i++) {
             System.out.println(arr[i]);
         }
+
+        in.close();
     }
 
     static void quicksort(int[] arr, int low, int high) {
@@ -52,6 +67,12 @@ public class RandomQuicksort {
         arr[back] = arr[high];
         arr[high] = temp2;
         return back;
+    }
+
+    static void printMemoryUsage() {
+        Runtime runtime = Runtime.getRuntime();
+        long memoryUsed = runtime.totalMemory() - runtime.freeMemory();
+        System.out.println("Memory Used (bytes): " + memoryUsed);
     }
 
 }

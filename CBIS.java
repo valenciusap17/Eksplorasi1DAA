@@ -1,20 +1,23 @@
 import java.lang.Math;
 import java.util.Scanner;
-// import org.apache.commons.lang3.time.StopWatch;
 
 public class CBIS {
     public static void main(String[] args) {
-        // int[] unsortedList = { 46, 24, 25, 71, 72, 84, 60, 87 };
         Scanner in = new Scanner(System.in);
+
+        // Ukuran dari array input dapat disesuaikan secara manual
         int[] unsortedList = new int[20000];
         for (int i = 0; i < 20000; i++) {
             unsortedList[i] = in.nextInt();
         }
+
+        // Variabel yang menyimpan nilai runtime saat proses baru dimulai
         // long start = System.currentTimeMillis();
+
         int position = 0;
         for (int i = 1; i < unsortedList.length; i++) {
             int current = i;
-            int value = unsortedList[i];
+            int value = unsortedList[current];
             int place = 0;
             if (value >= unsortedList[position]) {
                 place = binaryLocationFinder(unsortedList, position + 1, current - 1, value);
@@ -27,15 +30,20 @@ public class CBIS {
             unsortedList = inserter(unsortedList, place, current);
         }
 
-        // generate total runtime
+        // Variabel yang menyimpan nilai runtime saat proses sudah selesai
         // long end = System.currentTimeMillis();
-        // double runtime = (end-start)/1000000.0;
+
+        // Print total runtime
         // System.out.println("Elapsed time in mili second:" + (end - start));
 
-        // generate output
+        // Print memory usage
+        // printMemoryUsage();
+
+        // Print output
         for (int i = 0; i < unsortedList.length; i++) {
             System.out.println(unsortedList[i]);
         }
+        in.close();
 
     }
 
@@ -71,6 +79,12 @@ public class CBIS {
         }
         arr[start] = temp;
         return arr;
+    }
+
+    static void printMemoryUsage() {
+        Runtime runtime = Runtime.getRuntime();
+        long memoryUsed = runtime.totalMemory() - runtime.freeMemory();
+        System.out.println("Memory Used (bytes): " + memoryUsed);
     }
 
 }
